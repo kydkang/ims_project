@@ -1,8 +1,9 @@
-<h1>Homepage</h1>
+{% extends 'base.html' %}
 
+{% block content %}
 <ul>
     {% for department in object_list %}
-        <li>{{ department }}</li>
+    <li><a href="{% url 'index_list' department.id %}"> {{ department }} </a> </li>
     {% endfor %}
-    </ul>
-    
+</ul>
+{% endblock %}
