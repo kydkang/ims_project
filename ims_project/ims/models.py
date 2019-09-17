@@ -1,6 +1,5 @@
 from django.db import models
-# from decimal import Decimal 
-import decimal
+from django.urls import reverse
 
 class Department(models.Model):
     name = models.CharField(max_length=100, help_text='Enter department name')
@@ -24,3 +23,7 @@ class Index(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('index_detail', args=[str(self.department.id), str(self.id)])
+         # or  kwargs={'year': self.pub_date.year, 'slug': self.slug})

@@ -17,6 +17,7 @@ class IndexDetailView(ListView):
     template_name = 'ims/index_detail.html'
 
     # somehow, the following function is need to pass the object to template....
+    # you should use 'pk' in the url parameter to select the object for detailview
     def get_context_data(self, **kwargs):
         context = super(IndexDetailView, self).get_context_data(**kwargs)
         context['object'] = Index.objects.get(id=self.kwargs['pk'])

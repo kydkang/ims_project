@@ -1,5 +1,10 @@
 <h1>Index List - </h1>
 
+<div class="nav-right">
+        <a href="{% url 'index_new' %}">+ New Blog Post</a> 
+</div>
+        
+
 <ul>
     {% for index in object_list %}
         <!-- <li>{{ index }} </li> -->
