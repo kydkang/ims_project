@@ -1,8 +1,10 @@
 
 from django.contrib import admin
-from .models import Dname_Indexname
+from .models import Index, Department
 
-admin.site.register(Dname_Indexname)
 
-# class MyModelAdmin(admin.ModelAdmin):
-#     readonly_fields=('first',)
+class IndexAdmin(admin.ModelAdmin):
+    readonly_fields=('calculated_value',)
+
+admin.site.register(Index, IndexAdmin)
+admin.site.register(Department)
