@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
     {% for department in object_list %}
-    <li><a href="{% url 'index_list' department.id %}"> {{ department }} </a> </li>
+    <li><a href="{% url 'index_list' did=department.id %}"> {{ department }} </a> </li>
     {% endfor %}
 </ul>
 {% endblock %}
