@@ -1,7 +1,8 @@
 <h1>Index List - </h1>
 
-<div class="nav-right">
-    <a href="{% url 'index_new' did=did %}">+ Add New Index</a> 
+<!-- to add new index or report -->   
+<div class="nav-right">   
+    <a href="{% url 'index_new' did=did %}">+ Add New Index</a>  
 </div>
         
 
@@ -10,4 +11,4 @@
         <!-- <li>{{ index }} </li> -->
         <li><a href="{% url 'index_detail' did=index.department.id  pk=index.id %}">{{ index }}</a></li>
     {% endfor %}
-    </ul>
+</ul>

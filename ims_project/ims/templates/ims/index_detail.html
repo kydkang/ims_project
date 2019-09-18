@@ -5,4 +5,10 @@
 
 <h2> {{ object.name }} </h2>
 
+<p> <a href="{% url 'index_update' object.department.id  object.id %}"> Update Index </a> </p>
+
+<p> <a href="{% url 'index_delete' object.department.id object.id %}"> Delete Index </a> </p>
+
+
+
 {% endblock content %}

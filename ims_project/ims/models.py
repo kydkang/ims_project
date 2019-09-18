@@ -25,5 +25,5 @@ class Index(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('index_detail', args=[str(self.department.id), str(self.id)])
-         # or  kwargs={'year': self.pub_date.year, 'slug': self.slug})
+        # or  return reverse('index_detail', args=[str(self.department.id), str(self.id)])
+        return reverse('index_detail', kwargs={'did': str(self.department.id), 'pk': str(self.id)})
