@@ -5,7 +5,7 @@ from .models import Department, Index
 
 class HomePageView(ListView):
     model = Department                   ###  Or, queryset = Post.objects.all()
-    template_name = 'ims/home.html'
+    template_name = 'ims/index_home.html'
     ###  [[ context_object_name = ‘posts’ ]]  instead of the defalut ‘object_list’
 
 class IndexListView(ListView): 
