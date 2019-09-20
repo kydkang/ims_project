@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'ims',
     'users', 
 ]
@@ -117,6 +118,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+TIME_ZONE = 'America/Guayaquil'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -128,5 +130,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'index_home'
 LOGOUT_REDIRECT_URL = 'index_home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'  
 
 
