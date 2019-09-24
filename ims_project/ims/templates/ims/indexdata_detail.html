@@ -1,0 +1,12 @@
+{% extends 'index_base.html' %}
+{% block content %}
+
+<h2>Index Detail- </h2>
+
+<h2> {{ object.name }} </h2>
+
+<p> <a href="{% url 'indexdata_update' object.index.department.id  object.index.id  object.id %}"> Update Index </a> </p>
+
+<p> <a href="{% url 'indexdata_delete' object.index.department.id  object.index.id  object.id %}"> Delete Index </a> </p>
+
+{% endblock content %}

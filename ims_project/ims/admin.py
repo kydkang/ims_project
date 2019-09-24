@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Index, Department
+from .models import Index, Department, IndexData
 
 
 class IndexAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class IndexAdmin(admin.ModelAdmin):
 
 admin.site.register(Index, IndexAdmin)
 admin.site.register(Department)
+admin.site.register(IndexData)

@@ -1,7 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
-from .models import Department, Index
+from .models import Department, Index, IndexData
 
 class HomePageView(ListView):
     model = Department                   ###  Or, queryset = Post.objects.all()
@@ -20,6 +20,16 @@ class IndexListView(ListView):
         context['department'] = Department.objects.get(id=self.kwargs['did']) 
         return context
 
+class IndexDataListView(ListView): 
+    template_name ='ims/indexdata_list.html'
+    def get_queryset(self):
+        return IndexData.objects.filter(index=self.kwargs['pk'], )
+    def get_context_data(self, **kwargs): 
+        context = super(IndexDataListView, self).get_context_data(**kwargs) # get the default context data
+        context['did'] = self.kwargs['did'] # add extra field to the context
+        context['index'] = Index.objects.get(id=self.kwargs['pk'])
+        return context
+
 class IndexDetailView(ListView):
     model = Index 
     template_name = 'ims/index_detail.html'
@@ -30,6 +40,16 @@ class IndexDetailView(ListView):
         context = super(IndexDetailView, self).get_context_data(**kwargs)
         context['object'] = Index.objects.get(id=self.kwargs['pk'])
         return context
+
+class IndexDataDetailView(ListView):  
+    model = IndexData
+    template_name = 'ims/indexdata_detail.html'
+    pk_url_kwarg = 'datapk'
+    def get_context_data (self, **kwargs):
+        context = super(IndexDataDetailView, self).get_context_data(**kwargs)
+        context['object'] = IndexData.objects.get(id=self.kwargs['datapk'])
+        return context 
+
 
 from .form import IndexCreateForm 
 from django.shortcuts import get_object_or_404 
@@ -44,11 +64,25 @@ class IndexCreateView(CreateView):
         form.instance.department = dept 
         return super().form_valid(form) 
 
+from .form import IndexDataCreateForm 
+class IndexDataCreateView(CreateView):
+    form_class = IndexDataCreateForm
+    template_name = 'ims/indexdata_create.html'
+    def form_valid(self, form):
+        index = get_object_or_404(Index, id=self.kwargs['pk'])
+        form.instance.index = index
+        return super().form_valid(form) 
+
 
 class IndexUpdateView(UpdateView):
     model = Index
     fields = ['data_one', 'data_two']       # only two fields can be updated 
     template_name = 'ims/index_update.html'  
+
+class IndexDataUpdateView(UpdateView):
+    model = IndexData
+    fields = ['data_one', 'data_two']
+    template_name = 'ims/indexdata_update.html' 
 
 class IndexDeleteView(DeleteView): 
     model = Index
@@ -57,5 +91,11 @@ class IndexDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('index_list', args=[self.object.department.id]  ) 
         # Or, return reverse_lazy('index_list', kwargs={'did': self.object.department.id}  ) 
+
+class IndexDataDeleteView(DeleteView): 
+    model = IndexData
+    template_name = 'ims/indexdata_delete.html'
+    def get_success_url(self):
+        return reverse_lazy('indexdata_list', args=[self.object.index.department.id, self.object.index.id ])
 
 

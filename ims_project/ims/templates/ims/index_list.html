@@ -16,26 +16,9 @@
     <ul class="list-group list-group-flush">
         {% for index in object_list %}
             <li class="list-group-item">
-                <a href="{% url 'index_detail' did=index.department.id  pk=index.id %}">{{ index }}</a>
+                <a href="{% url 'indexdata_list' did=index.department.id  pk=index.id %}">{{ index }}</a>
             </li>
         {% endfor %}
     </ul>
 </div>
 {% endblock %}
-
-<!-- <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example teke up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-
-  <div class="card" style="width: 18rem;">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-  </div> -->

@@ -1,0 +1,22 @@
+{% extends 'index_base.html' %}
+
+{% block content %}
+    
+<h1>Index List - {{ index }} </h1>
+
+to add new index or report   
+<div class="nav-right">   
+   {# <a href="{% url 'indexdata_new' did=did pk=pk %}">+ Add New Index Data</a>   -->    #}
+</div>
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        {% for indexdata in object_list %}
+            <li class="list-group-item">
+                <a href="{% url 'indexdata_detail' did=indexdata.index.department.id  pk=indexdata.index.id  datapk=indexdata.id  %}">{{ index }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
