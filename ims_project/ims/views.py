@@ -14,9 +14,10 @@ class IndexListView(ListView):
     def get_queryset(self):
         return Index.objects.filter(department=self.kwargs['did'])
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs): 
         context = super(IndexListView, self).get_context_data(**kwargs) # get the default context data
         context['did'] = self.kwargs['did'] # add extra field to the context
+        context['department'] = Department.objects.get(id=self.kwargs['did']) 
         return context
 
 class IndexDetailView(ListView):
@@ -35,7 +36,7 @@ from django.shortcuts import get_object_or_404
 class IndexCreateView(CreateView):
     # model = Index   # this line is moved to IndexCreateForm  
     form_class = IndexCreateForm
-    template_name = 'ims/index_new.html'
+    template_name = 'ims/index_create.html'
     # fields = ['name', 'data_one', 'data_two']  # this line is moved to IndexCreateForm  
 
     def form_valid(self, form):
@@ -46,7 +47,7 @@ class IndexCreateView(CreateView):
 
 class IndexUpdateView(UpdateView):
     model = Index
-    fields = ['data_one', 'data_two']
+    fields = ['data_one', 'data_two']       # only two fields can be updated 
     template_name = 'ims/index_update.html'  
 
 class IndexDeleteView(DeleteView): 

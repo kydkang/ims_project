@@ -1,11 +1,15 @@
 {% extends 'index_base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
+  <div class="jumbotron">
     {% if user.is_authenticated %}
-        Hi {{ user.username }}!
+      <h1 class="display-6">Dept List</h1>
+        <p class="lead">Hi {{ user.username }}! </p>
         <ul>
             {% for department in object_list %}
-            <li><a href="{% url 'index_list' did=department.id %}"> {{ department }} </a> </li>
+                <p class="lead">
+                    <li><a class="btn btn-primary btn-sm" href="{% url 'index_list' did=department.id %}"> {{ department }} </a> </li>
+                </p>
             {% endfor %}
         </ul>
         <p><a href="{% url 'logout' %}">logout</a></p>
@@ -15,4 +19,8 @@
         <!-- | -->
         <!-- <a href="{% url 'signup' %}">signup</a>  -->
     {% endif %}
+  </div>
 {% endblock %}
+
+
+        
