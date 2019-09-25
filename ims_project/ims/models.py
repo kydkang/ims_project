@@ -48,5 +48,4 @@ class IndexData(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        # or  return reverse('index_detail', args=[str(self.department.id), str(self.id)])
         return reverse('indexdata_detail', kwargs={'did':str(self.index.department.id), 'pk':str(self.index.id), 'datapk':str(self.id) })

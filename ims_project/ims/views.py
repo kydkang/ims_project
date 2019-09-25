@@ -80,9 +80,12 @@ class IndexUpdateView(UpdateView):
     template_name = 'ims/index_update.html'  
 
 class IndexDataUpdateView(UpdateView):
-    model = IndexData
-    fields = ['data_one', 'data_two']
+    model = IndexData    # this line is moved to IndexCreateForm  
+    fields = ['data_one', 'data_two']   # this line is moved to IndexCreateForm  
     template_name = 'ims/indexdata_update.html' 
+    def get_object(self):
+        review = get_object_or_404(IndexData, pk=self.kwargs['datapk'])
+        return review
 
 class IndexDeleteView(DeleteView): 
     model = Index
