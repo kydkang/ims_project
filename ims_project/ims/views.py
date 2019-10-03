@@ -12,7 +12,7 @@ class IndexListView(ListView):
     # model = Index
     template_name = 'ims/index_list.html' 
     def get_queryset(self):
-        return Index.objects.filter(department=self.kwargs['did'])
+        return Index.objects.filter(department__id=self.kwargs['did'])
 
     def get_context_data(self, **kwargs): 
         context = super(IndexListView, self).get_context_data(**kwargs) # get the default context data
@@ -23,11 +23,12 @@ class IndexListView(ListView):
 class IndexDataListView(ListView): 
     template_name ='ims/indexdata_list.html'
     def get_queryset(self):
-        return IndexData.objects.filter(index=self.kwargs['pk'], )
+        return IndexData.objects.filter(index__id=self.kwargs['pk'] )
     def get_context_data(self, **kwargs): 
         context = super(IndexDataListView, self).get_context_data(**kwargs) # get the default context data
         context['did'] = self.kwargs['did'] # add extra field to the context
-        context['index'] = Index.objects.get(id=self.kwargs['pk'])
+        # context['index'] = Index.objects.get(id=self.kwargs['pk'])
+        context['pk'] = self.kwargs['pk']
         return context
 
 class IndexDetailView(ListView):
@@ -48,6 +49,8 @@ class IndexDataDetailView(ListView):
     def get_context_data (self, **kwargs):
         context = super(IndexDataDetailView, self).get_context_data(**kwargs)
         context['object'] = IndexData.objects.get(id=self.kwargs['datapk'])
+        context['did'] = self.kwargs['did'] # add extra field to the context
+        context['pk'] = self.kwargs['pk']
         return context 
 
 

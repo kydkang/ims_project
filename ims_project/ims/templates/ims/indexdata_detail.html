@@ -1,9 +1,17 @@
 {% extends 'index_base.html' %}
 {% block content %}
 
-<h2>Index Detail- </h2>
+<h2>Index Detail-{{ object.name }} </h2>
 
-<h2> {{ object.name }} </h2>
+<!-- to add new index or report -->   
+<div class="nav-right">   
+    <a href="{% url 'indexdata_new' did=did pk=pk %}">+ Add New Index</a>  
+</div>
+
+
+    <p>Data One: {{ object.data_one }}</p>
+    <p>Data Two: {{ object.data_two }}</p>
+    <p>Data Calculated: {{ object.calculated_value }}</p>
 
 <p> <a href="{% url 'indexdata_update' object.index.department.id  object.index.id  object.id %}"> Update Index </a> </p>
 
